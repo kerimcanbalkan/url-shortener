@@ -10,6 +10,8 @@ type Config struct {
 	DBUser     string
 	DBPassword string
 	DBName     string
+	Port       string
+	Host       string
 }
 
 var Envs = initConfig()
@@ -20,6 +22,8 @@ func initConfig() Config {
 		DBUser:     getEnv("DB_USER", "root"),
 		DBPassword: getEnv("DB_PASSWORD", "mypassword"),
 		DBName:     getEnv("DB_NAME", "mydb"),
+		Port:       getEnv("PORT", "8080"),
+		Host:       getEnv("HOST", "localhost"),
 	}
 }
 

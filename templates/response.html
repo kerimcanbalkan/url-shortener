@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <style>
+        /* Gruvbox Theme Colors */
+        :root {
+            --bg: #282828;
+            --fg: #ebdbb2;
+            --accent: #458588;
+            --highlight: #98971a;
+            --error: #cc241d;
+            --border: #928374;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Arial", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: var(--highlight);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .container {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Your URL</h1>
+    <div class="container">
+        <a href="{{.URL}}" target="_blank">{{.URL}}</a>
+    </div>
+</body>
+
+</html>

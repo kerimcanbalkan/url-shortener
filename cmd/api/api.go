@@ -22,5 +22,5 @@ func NewAPI(database *db.DB) *API {
 func (api *API) setupRoutes() {
 	api.Router.HandleFunc("/", api.IndexHandler).Methods("GET")
 	api.Router.HandleFunc("/shorten", api.ShortenHandler).Methods("POST")
-	api.Router.HandleFunc("/{shortcode}", api.RedirectHandler).Methods("GET")
+	api.Router.HandleFunc("/{shortCode}", api.RedirectHandler).Methods("GET")
 }

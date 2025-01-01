@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -10,8 +11,15 @@ import (
 )
 
 func main() {
-	// Database connection string
-	connStr := "user=" + config.Envs.DBUser + " password=" + config.Envs.DBPassword + " dbname=" + config.Envs.DBName + "sslmode=disable"
+	connStr := fmt.Sprintf(
+		"postgres://%s:%s@%s:%s/%s?sslmode=disable",
+		config.Envs.DBUser,
+		config.Envs.DBPassword,
+		config.Envs.Host,
+		config.Envs.Port,
+		config.Envs.DBName,
+	)
+	// connStr := "postgres://postgres:010203@localhost:5432/postgres?sslmode=disable"
 
 	// Initialize database
 	database, err := db.NewDB(connStr)
