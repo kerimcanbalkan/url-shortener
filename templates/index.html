@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <style>
+        /* Gruvbox Theme Colors */
+        :root {
+            --bg: #282828;
+            --fg: #ebdbb2;
+            --accent: #458588;
+            --highlight: #98971a;
+            --error: #cc241d;
+            --border: #928374;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Arial", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid var(--border);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: var(--highlight);
+        }
+
+        input[type="url"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background-color: var(--bg);
+            color: var(--fg);
+        }
+
+        input[type="submit"] {
+            background-color: var(--accent);
+            color: var(--bg);
+            font-weight: bold;
+            cursor: pointer;
+            transition:
+                background-color 0.3s,
+                transform 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--highlight);
+            transform: scale(1.05);
+        }
+
+        .shortened-urls {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .shortened-urls h2 {
+            color: var(--highlight);
+            margin-bottom: 10px;
+        }
+
+        .url-item {
+            background: var(--bg);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .url-item a {
+            color: var(--accent);
+            text-decoration: none;
+            word-wrap: break-word;
+        }
+
+        .url-item a:hover {
+            color: var(--highlight);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>URL Shortener</h1>
+    <form action="/shorten" method="POST">
+        <label for="url">Enter your URL:</label>
+        <input type="url" id="url" name="url" placeholder="https://example.com" required />
+        <input type="submit" value="Shorten URL" />
+    </form>
+
+    <div class="shortened-urls">
+        <h2>Your Shortened URLs:</h2>
+        <!-- Dynamically populate shortened URLs here -->
+        <div class="url-item">
+            <a href="https://short.ly/abcd" target="_blank">https://short.ly/abcd</a>
+        </div>
+    </div>
+</body>
+
+</html>
