@@ -25,7 +25,7 @@ func (api *API) ShortenHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	shortCode, err := api.GenerateUniqueShortCode()
+	shortCode, err := api.GenerateUniqueShortCode(originalURL)
 	if err != nil {
 		http.Error(w, "internal server error", http.StatusInternalServerError)
 	}

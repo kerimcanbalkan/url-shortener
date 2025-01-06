@@ -4,9 +4,9 @@ import (
 	"math/rand"
 	"net/url"
 	"time"
-)
 
-const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	"github.com/speps/go-hashids/v2"
+)
 
 func init() {
 	rand.NewSource(time.Now().UnixNano())
@@ -17,28 +17,19 @@ func isValidURL(testURL string) bool {
 	return err == nil
 }
 
-func (api *API) GenerateUniqueShortCode() (string, error) {
-	const length = 6
-
-	for i := 0; i < 5; i++ {
-		code := generateRandomCode(length)
-		var exists bool
-		err := api.DB.Connection.QueryRow("SELECT EXISTS(SELECT 1 FROM urls WHERE short_code = $1)", code).
-			Scan(&exists)
-		if err != nil {
-			return "", err
-		}
-		if !exists {
-			return code, nil
-		}
+func (api *API) GenerateUniqueShortCode(url string) (string, error) {
+	i := rand.Intn(len(url))
+	hd := hashids.NewData()
+	hd.Salt = url
+	hd.MinLength = 6
+	h, err := hashids.NewWithData(hd)
+	if err != nil {
+		return "", err
 	}
-	return "", nil
-}
-
-func generateRandomCode(length int) string {
-	b := make([]byte, length)
-	for i := range b {
-		b[i] = charset[rand.Intn(len(charset))]
+	e, err := h.Encode([]int{i})
+	if err != nil {
+		return "", err
 	}
-	return string(b)
+
+	return e, nil
 }
